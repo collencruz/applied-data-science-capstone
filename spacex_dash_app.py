@@ -47,7 +47,7 @@ app.layout = html.Div(children=[html.H1('SpaceX Launch Records Dashboard',
                                 dcc.RangeSlider(id='payload-slider',
                                                 min=0, max=10000, step=1000,
                                                 marks={0: '0', 2500: '2500',
-                                                       5000: '5000', 10000: '10000'},
+                                                       5000: '5000', 7500: '7500', 10000: '10000'},
                                                 value=[min_payload, max_payload]),
 
                                 # TASK 4: Add a scatter chart to show the correlation between payload and launch success
@@ -73,7 +73,7 @@ def get_pie_chart(entered_site):
         filtered_df = spacex_df[spacex_df['Launch Site'] == entered_site]
         filtered_df = filtered_df.groupby('class').count().reset_index()
         fig = px.pie(filtered_df,
-                     values='Unnamed: 0',
+                     values='total',
                      names='class',
                      title='Total Success Launches for site {}'.format(entered_site))
         # return the outcomes piechart for a selected site
